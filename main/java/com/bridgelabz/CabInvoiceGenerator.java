@@ -7,6 +7,9 @@ public class CabInvoiceGenerator {
     private static final int MINIMUM_COST_PER_KILOMETER = 10;
     private static final double COST_PER_TIME = 1;
     private static final double MINIMUM_FARE = 5;
+    private static final double PREMIUM_MINIMUM_COST_PER_KILOMETER = 20.0;
+    private static final int PREMIUM_COST_PER_TIME = 2;
+    private static final double PREMIUM_MINIMUM_FARE = 20;
 
 
     public double calculateFare(double distance, int time) {
@@ -27,11 +30,7 @@ public class CabInvoiceGenerator {
         Ride[] rides1 = {new Ride(2.0, 5),
                 new Ride(0.1, 1)
         };
-        Ride[] rides2 = {new Ride(5.0, 10),
-                new Ride(1, 1)
-        };
         map.put(1, rides1);
-        map.put(2, rides2);
 
         for (Map.Entry<Integer, Ride[]> entry : map.entrySet()) {
             if (userId == entry.getKey()) {
@@ -41,5 +40,10 @@ public class CabInvoiceGenerator {
             }
         }
         return null;
+    }
+
+    public double calculatePremiumFare(double distance, int time) {
+        double totalFare = distance * PREMIUM_MINIMUM_COST_PER_KILOMETER + time * PREMIUM_COST_PER_TIME;
+        return Math.max(totalFare, PREMIUM_MINIMUM_FARE);
     }
 }
