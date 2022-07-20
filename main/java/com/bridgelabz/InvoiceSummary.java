@@ -3,13 +3,11 @@ package com.bridgelabz;
 public class InvoiceSummary {
     private final int numOfRides;
     private final double totalFare;
-    private final double averageFare;
+    private double averageFare;
 
     public InvoiceSummary(int numOfRides, double totalFare) {
         this.numOfRides = numOfRides;
         this.totalFare = totalFare;
-        this.averageFare = this.totalFare / this.numOfRides;
-
     }
 
     @Override
@@ -23,5 +21,10 @@ public class InvoiceSummary {
     @Override
     public int hashCode() {
         return 0;
+    }
+
+    public InvoiceSummary getInvoiceSummary() {
+        this.averageFare = this.totalFare / this.numOfRides;
+        return this;
     }
 }
